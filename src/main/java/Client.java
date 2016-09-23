@@ -58,6 +58,12 @@ public class Client {
             return client;
         }
     }
+    public static List<Client> all(){
+        try(Connection con= DB.sql2o.open()){
+            String sql = "SELECT id, name, stylist_id, phone_number FROM clients";
+            return con.createQuery(sql).executeAndFetch(Client.class);
+        }
+    }
     public static Client findByPhone(String phone_number){
         try(Connection con = DB.sql2o.open()){
             String sql = "SELECT * FROM clients WHERE phone_number=:phone_number";

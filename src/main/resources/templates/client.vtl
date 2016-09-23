@@ -1,0 +1,9 @@
+<h2>Edit: $client.getName()</h2>
+
+<form action="/client/$client.getId()" method="post">
+  <label for="stylist_id">Stylist ID</label>
+  <input id="stylist_id" name="stylist_id" type="text" value="$client.getStylistId()">
+  <label for="phone">Phone#</label>
+  <input id="phone" name="phone" type="text" value="$client.getPhoneNumber()">
+  <button type="submit" class="btn btn-info">Update client info</button>
+</form>

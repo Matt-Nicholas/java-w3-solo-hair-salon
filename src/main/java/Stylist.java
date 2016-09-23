@@ -9,12 +9,14 @@ public class Stylist {
     private int extention;
     private String specialty;
     private String bio;
+    private String image_src;
 
-    public Stylist(String name, int extention, String specialty, String bio) {
+    public Stylist(String name, int extention, String specialty, String bio, String image_src) {
         this.name = name;
         this.extention = extention;
         this.specialty = specialty;
         this.bio = bio;
+        this.image_src = image_src;
     }
     // Getters
     public int getId(){
@@ -31,6 +33,9 @@ public class Stylist {
     }
     public String getBio(){
         return bio;
+    }
+    public String getImage(){
+        return image_src;
     }
     @Override
     public boolean equals(Object otherStylist) {
@@ -65,12 +70,13 @@ public class Stylist {
 
     public void save() {
         try(Connection con = DB.sql2o.open()) {
-            String sql = "INSERT INTO stylists (name, extention, specialty, bio) VALUES (:name, :extention, :specialty, :bio)";
+            String sql = "INSERT INTO stylists (name, extention, specialty, bio, image_src) VALUES (:name, :extention, :specialty, :bio, :image_src)";
             this.id = (int) con.createQuery(sql, true)
             .addParameter("name", this.name)
             .addParameter("extention", this.extention)
             .addParameter("specialty", this.specialty)
             .addParameter("bio", this.bio)
+            .addParameter("image_src", this.image_src)
             .executeUpdate()
             .getKey();
         }
@@ -78,7 +84,7 @@ public class Stylist {
 
     public static List<Stylist> all(){
         try(Connection con= DB.sql2o.open()){
-            String sql = "SELECT id, name, extention, specialty FROM stylists";
+            String sql = "SELECT id, name, extention, specialty, bio, image_src FROM stylists";
             return con.createQuery(sql).executeAndFetch(Stylist.class);
         }
     }
@@ -110,6 +116,15 @@ public class Stylist {
             .executeUpdate();
         }
     }
+    // public void updateBio(String bio){
+    //     try(Connection con = DB.sql2o.open()) {
+    //         String sql = "UPDATE stylists SET bio = :bio WHERE id = :id";
+    //         con.createQuery(sql)
+    //         .addParameter("bio", bio)
+    //         .addParameter("id", id)
+    //         .executeUpdate();
+    //     }
+    // }
     public void delete() {
         try(Connection con = DB.sql2o.open()) {
             String sql = "DELETE FROM stylists WHERE id = :id;";

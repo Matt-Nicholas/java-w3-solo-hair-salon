@@ -1,0 +1,16 @@
+    <h2>Meet our Stylists</h2>
+
+    #if($stylists.size() > 0)
+    <ul>
+        #foreach ($currentStylist in $stylists)
+        <li>
+            <h3>$currentStylist.getName()</h3>
+            <h4>$currentStylist.getSpecialty()</h4>
+            <img src="/$currentStylist.getImage()"/>
+            <h4>Phone:(503) 555-0101 Ext# $currentStylist.getExtention()</h4>
+        </li>
+        #end
+    </ul>
+    #else
+    <p>Now Hiring</p>
+    #end
