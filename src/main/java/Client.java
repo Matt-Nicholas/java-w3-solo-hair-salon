@@ -67,6 +67,33 @@ public class Client {
             return client;
         }
     }
+    public void delete() {
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "DELETE FROM clients WHERE id = :id;";
+            con.createQuery(sql)
+            .addParameter("id", id)
+            .executeUpdate();
+        }
+    }
+
+    public void updateStylistId(int stylist_id){
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "UPDATE clients SET stylist_id = :stylist_id WHERE id = :id";
+            con.createQuery(sql)
+            .addParameter("stylist_id", stylist_id)
+            .addParameter("id", id)
+            .executeUpdate();
+        }
+    }
+    public void updatePhone(String phone_number){
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "UPDATE clients SET phone_number = :phone_number WHERE id = :id";
+            con.createQuery(sql)
+            .addParameter("phone_number", phone_number)
+            .addParameter("id", id)
+            .executeUpdate();
+        }
+    }
 
 
 }

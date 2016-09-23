@@ -50,5 +50,27 @@ public class ClientTest {
         testClient.save();
         assertEquals(Client.findByPhone("5035550101"), testClient);
     }
+    @Test
+    public void delete_deletesClient_true() {
+        Client testClient = new Client("Jill", 1, "5035550101");
+        testClient.save();
+        int testClientId = testClient.getId();
+        testClient.delete();
+        assertEquals(null, Client.find(testClientId));
+    }
+    @Test
+    public void updateStylistId_updatesStylistIdForGivenClient_2(){
+        Client testClient = new Client("Jill", 1, "5035550101");
+        testClient.save();
+        testClient.updateStylistId(2);
+        assertEquals(2, Client.find(testClient.getId()).getStylistId());
+    }
+    @Test
+    public void updatePhone_updatesPhoneNumberGivenClient_2(){
+        Client testClient = new Client("Jill", 1, "5035550101");
+        testClient.save();
+        testClient.updatePhone("5035550102");
+        assertEquals("5035550102", Client.find(testClient.getId()).getPhoneNumber());
+    }
 
 }
