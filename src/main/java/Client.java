@@ -29,4 +29,17 @@ public class Client {
       return phone_number;
     }
 
+    public void save() {
+      try(Connection con = DB.sql2o.open()) {
+        String sql = "INSERT INTO clients (name, stylist_id, phone_number) VALUES (:name, :stylist_id, :phone_number)";
+        this.id = (int) con.createQuery(sql, true)
+          .addParameter("name", this.name)
+          .addParameter("stylist_id", this.stylist_id)
+          .addParameter("phone_number", this.phone_number)
+          .executeUpdate()
+          .getKey();
+      }
+    }
+
+
 }

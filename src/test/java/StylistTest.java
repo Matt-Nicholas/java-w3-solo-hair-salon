@@ -40,7 +40,7 @@ public class StylistTest {
   public void getBio_stylistInstantiatesWithBio_1() {
     Stylist testStylist = new Stylist("Alana", 1, "Colorist", "Info goes here");
     testStylist.save();
-    assertEquals("Colorist", testStylist.getBio());
+    assertEquals("Info goes here", testStylist.getBio());
   }
   @Test
   public void find_returnsAllStylits_stylist2 (){
