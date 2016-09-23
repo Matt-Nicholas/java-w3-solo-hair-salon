@@ -62,7 +62,21 @@ public class StylistTest {
 
   }
 
+  @Test
+  public void updateSpecialty_updatesSpecialty_Hairdesigner(){
+    Stylist testStylist = new Stylist("Alana", 1, "Colorist");
+    testStylist.save();
+    testStylist.updateSpecialty("Hairdesigner");
+    assertEquals("Hairdesigner", Stylist.find(testStylist.getId()).getSpecialty());
 
-
+  }
+  @Test
+  public void delete_deletesStylist_true() {
+    Stylist testStylist = new Stylist("Alana", 1, "Colorist");
+    testStylist.save();
+    int testStylistId = testStylist.getId();
+    testStylist.delete();
+    assertEquals(null, Stylist.find(testStylistId));
+  }
 
 }
