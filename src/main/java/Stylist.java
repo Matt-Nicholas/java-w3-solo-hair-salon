@@ -8,11 +8,13 @@ public class Stylist {
   private String name;
   private int extention;
   private String specialty;
+  private String bio;
 
-  public Stylist(String name, int extention, String specialty) {
+  public Stylist(String name, int extention, String specialty, String bio) {
     this.name = name;
     this.extention = extention;
     this.specialty = specialty;
+    this.bio = bio;
   }
 // Getters
   public int getId(){
@@ -27,7 +29,9 @@ public class Stylist {
   public String getSpecialty(){
     return specialty;
   }
-
+  public String getBio(){
+    return bio;
+  }
   @Override
   public boolean equals(Object otherStylist) {
     if (!(otherStylist instanceof Stylist)) {
@@ -51,11 +55,12 @@ public class Stylist {
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO stylists (name, extention, specialty) VALUES (:name, :extention, :specialty)";
+      String sql = "INSERT INTO stylists (name, extention, specialty, bio) VALUES (:name, :extention, :specialty, :bio)";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("name", this.name)
         .addParameter("extention", this.extention)
         .addParameter("specialty", this.specialty)
+        .addParameter("bio", this.bio)
         .executeUpdate()
         .getKey();
     }
@@ -82,6 +87,15 @@ public class Stylist {
       String sql = "UPDATE stylists SET specialty = :specialty WHERE id = :id";
       con.createQuery(sql)
         .addParameter("specialty", specialty)
+        .addParameter("id", id)
+        .executeUpdate();
+      }
+  }
+  public void updateBio(String bio){
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE stylists SET bio = :bio WHERE id = :id";
+      con.createQuery(sql)
+        .addParameter("bio", bio)
         .addParameter("id", id)
         .executeUpdate();
       }
