@@ -1,38 +1,29 @@
-<h3>Stylists</h3>
-#if($stylists)
+    <h3>Stylists</h3>
+    #if($stylists)
     #foreach($currentStylist in $stylists)
-        <h4><a href="/stylist/$currentStylist.getId()">$currentStylist.getName()</a></h4>
+    <h4><a href="/stylist/$currentStylist.getId()">$currentStylist.getName()</a></h4>
     #end
-#else
+    #else
     <p>
         You have no employees!
     </p>
-#end
-
-<h5>Add new stylist</h5>
-
-<form action="/stylist/new" method="post">
-
-  <label for="name">Name</label>
-  <input id="name" name="name" type="text">
-  <br>
-
-  <label for="extention">Phone Ext#</label>
-  <input id="extention" name="extention" type="text">
-  <br>
-
-
-  <label for="specialty">Specialty</label>
-  <input id="specialty" name="specialty" type="text">
-  <br>
-
-  <label for="bio">Bio</label>
-  <input id="bio" name="bio" type="text">
-  <br>
-
-  <label for="image_src">Image Source</label>
-  <input id="image_src" name="image_src" type="text">
-  <br>
-
-  <button type="submit" class="btn btn-success">Add Stylist</button>
-</form>
+    #end
+    <h5>Add new stylist</h5>
+    <form action="/stylist/new" method="post">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text">
+        <br>
+        <label for="extention">Phone Ext#</label>
+        <input id="extention" name="extention" type="text" input type="">
+        <br>
+        <label for="specialty">Specialty</label>
+        <input id="specialty" name="specialty" type="text">
+        <br>
+        <label for="bio">Bio</label>
+        <input id="bio" name="bio" type="text">
+        <br>
+        <label for="image_src">Image Source</label>
+        <input id="image_src" name="image_src" type="text">
+        <br>
+        <button type="submit" class="btn btn-success">Add Stylist</button>
+    </form>

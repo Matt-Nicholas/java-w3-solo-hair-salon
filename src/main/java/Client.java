@@ -14,7 +14,6 @@ public class Client {
         this.stylist_id = stylist_id;
         this.phone_number = phone_number;
     }
-
     // Getters
     public int getId(){
         return id;
@@ -81,7 +80,6 @@ public class Client {
             .executeUpdate();
         }
     }
-
     public void updateStylistId(int stylist_id){
         try(Connection con = DB.sql2o.open()) {
             String sql = "UPDATE clients SET stylist_id = :stylist_id WHERE id = :id";
@@ -100,6 +98,4 @@ public class Client {
             .executeUpdate();
         }
     }
-
-
 }

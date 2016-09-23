@@ -48,7 +48,6 @@ public class StylistTest {
         testStylist.save();
         assertEquals("images/test.jpg", testStylist.getImage());
     }
-
     @Test
     public void find_returnsStylitsById_stylist2 (){
         Stylist stylist1 = new Stylist("Alana", 1, "Colorist", "Info goes here", "images/test.jpg");
@@ -113,5 +112,4 @@ public class StylistTest {
         Client[] clients = new Client[] {firstClient, secondClient};
         assertTrue(testStylist.getClients().containsAll(Arrays.asList(clients)));
     }
-
 }

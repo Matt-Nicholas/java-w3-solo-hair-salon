@@ -81,5 +81,4 @@ public class ClientTest {
         testClient.updatePhone("5035550102");
         assertEquals("5035550102", Client.find(testClient.getId()).getPhoneNumber());
     }
-
 }

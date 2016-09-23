@@ -47,7 +47,6 @@ public class Stylist {
             this.getId() == newStylist.getId();
         }
     }
-
     public static Stylist find(int id){
         try(Connection con = DB.sql2o.open()){
             String sql = "SELECT * FROM stylists WHERE id=:id";
@@ -66,8 +65,6 @@ public class Stylist {
             return stylist;
         }
     }
-
-
     public void save() {
         try(Connection con = DB.sql2o.open()) {
             String sql = "INSERT INTO stylists (name, extention, specialty, bio, image_src) VALUES (:name, :extention, :specialty, :bio, :image_src)";
@@ -88,7 +85,6 @@ public class Stylist {
             return con.createQuery(sql).executeAndFetch(Stylist.class);
         }
     }
-
     public void updateExtention(int extention){
         try(Connection con = DB.sql2o.open()) {
             String sql = "UPDATE stylists SET extention = :extention WHERE id = :id";
@@ -116,15 +112,15 @@ public class Stylist {
             .executeUpdate();
         }
     }
-    // public void updateBio(String bio){
-    //     try(Connection con = DB.sql2o.open()) {
-    //         String sql = "UPDATE stylists SET bio = :bio WHERE id = :id";
-    //         con.createQuery(sql)
-    //         .addParameter("bio", bio)
-    //         .addParameter("id", id)
-    //         .executeUpdate();
-    //     }
-    // }
+    public void updateImage(String image_src){
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "UPDATE stylists SET image_src = :image_src WHERE id = :id";
+            con.createQuery(sql)
+            .addParameter("image_src", image_src)
+            .addParameter("id", id)
+            .executeUpdate();
+        }
+    }
     public void delete() {
         try(Connection con = DB.sql2o.open()) {
             String sql = "DELETE FROM stylists WHERE id = :id;";

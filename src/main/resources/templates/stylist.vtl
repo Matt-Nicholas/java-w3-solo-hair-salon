@@ -1,22 +1,19 @@
     <h3>$stylist.getName()</h3>
-
     <form action="/stylist/$stylist.getId()/update" method="post">
         <label for="extention">Ext#</label>
         <input id="extention" name="extention" type="text" value="$stylist.getExtention()" required>
-    <br>
+        <br>
         <label for="specialty">Specialty</label>
         <input id="specialty" name="specialty" type="text" value="$stylist.getSpecialty()" required>
-    <br>
+        <br>
         <label for="bio">Bio</label>
         <input id="bio" name="bio" type="text" value="$stylist.getBio()" required>
-    <br>
+        <br>
         <label for="image_src">Image file name</label>
         <input id="image_src" name="image_src" type="text" value="$stylist.getImage()" required>
         <button type="submit" class="btn btn-info">Update Stylist</button>
     </form>
     <br>
-
-
     <h4>Add client</h4>
     <form action="/stylist/$stylist.getId()/client/new" method="post">
         <br>
@@ -31,18 +28,16 @@
         <br>
         <button type="submit" class="btn btn-success">Add Client</button>
     </form>
-
-
     <h4>Current clients</h4>
     <ul>
-    #foreach($client in $stylist.getClients())
-    <li>
-        <h3><a href="/client/$client.getId()">$client.getName()</a></h3>
-        <h5>$client.getPhoneNumber()</h5>
-        <button type="button" name="button"></button>
-        <form action="/stylist/$stylist.getId()/client/$client.getId()/delete" method="post">
-            <button type="submit" class="btn btn-danger" id="delete-task">Delete Client</button>
-        </form>
-    </li>
-    #end
+        #foreach($client in $stylist.getClients())
+        <li>
+            <h3><a href="/client/$client.getId()">$client.getName()</a></h3>
+            <h5>$client.getPhoneNumber()</h5>
+            <button type="button" name="button"></button>
+            <form action="/stylist/$stylist.getId()/client/$client.getId()/delete" method="post">
+                <button type="submit" class="btn btn-danger" id="delete-task">Delete Client</button>
+            </form>
+        </li>
+        #end
     </ul>

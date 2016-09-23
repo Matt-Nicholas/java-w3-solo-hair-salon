@@ -40,7 +40,8 @@ SET default_with_oids = false;
 CREATE TABLE clients (
     id integer NOT NULL,
     name character varying,
-    stylist_id integer
+    stylist_id integer,
+    phone_number character varying
 );
 
 
@@ -73,7 +74,11 @@ ALTER SEQUENCE clients_id_seq OWNED BY clients.id;
 
 CREATE TABLE stylists (
     id integer NOT NULL,
-    name character varying
+    name character varying,
+    specialty character varying,
+    extention integer,
+    bio character varying,
+    image_src character varying
 );
 
 
@@ -118,7 +123,10 @@ ALTER TABLE ONLY stylists ALTER COLUMN id SET DEFAULT nextval('stylists_id_seq':
 -- Data for Name: clients; Type: TABLE DATA; Schema: public; Owner: alanamorosky
 --
 
-COPY clients (id, name, stylist_id) FROM stdin;
+COPY clients (id, name, stylist_id, phone_number) FROM stdin;
+3	bill	2	12
+5	Client 1	2	12934801297834
+4	bill	2	56
 \.
 
 
@@ -126,14 +134,16 @@ COPY clients (id, name, stylist_id) FROM stdin;
 -- Name: clients_id_seq; Type: SEQUENCE SET; Schema: public; Owner: alanamorosky
 --
 
-SELECT pg_catalog.setval('clients_id_seq', 1, false);
+SELECT pg_catalog.setval('clients_id_seq', 5, true);
 
 
 --
 -- Data for Name: stylists; Type: TABLE DATA; Schema: public; Owner: alanamorosky
 --
 
-COPY stylists (id, name) FROM stdin;
+COPY stylists (id, name, specialty, extention, bio, image_src) FROM stdin;
+1	Hank	Propane	2	Sells propane and propane accessories	Hank.jpg
+2	Marge Simpson	Tall Hair	2	Tv actress	images/marge.gif
 \.
 
 
@@ -141,7 +151,7 @@ COPY stylists (id, name) FROM stdin;
 -- Name: stylists_id_seq; Type: SEQUENCE SET; Schema: public; Owner: alanamorosky
 --
 
-SELECT pg_catalog.setval('stylists_id_seq', 1, false);
+SELECT pg_catalog.setval('stylists_id_seq', 2, true);
 
 
 --
