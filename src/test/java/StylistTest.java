@@ -43,7 +43,7 @@ public class StylistTest {
     assertEquals("Info goes here", testStylist.getBio());
   }
   @Test
-  public void find_returnsAllStylits_stylist2 (){
+  public void find_returnsStylitsById_stylist2 (){
     Stylist stylist1 = new Stylist("Alana", 1, "Colorist", "Info goes here");
     stylist1.save();
     Stylist stylist2 = new Stylist("Sarah", 2, "Hairdesigner", "Info goes here");

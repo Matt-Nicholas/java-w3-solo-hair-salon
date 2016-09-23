@@ -28,7 +28,16 @@ public class Client {
     public String getPhoneNumber(){
       return phone_number;
     }
-
+    @Override
+    public boolean equals(Object otherClient) {
+      if (!(otherClient instanceof Client)) {
+        return false;
+      } else {
+        Client newClient = (Client) otherClient;
+        return this.getName().equals(newClient.getName()) &&
+               this.getId() == newClient.getId();
+      }
+    }
     public void save() {
       try(Connection con = DB.sql2o.open()) {
         String sql = "INSERT INTO clients (name, stylist_id, phone_number) VALUES (:name, :stylist_id, :phone_number)";
@@ -38,6 +47,24 @@ public class Client {
           .addParameter("phone_number", this.phone_number)
           .executeUpdate()
           .getKey();
+      }
+    }
+    public static Client find(int id){
+      try(Connection con = DB.sql2o.open()){
+        String sql = "SELECT * FROM clients WHERE id=:id";
+        Client client = con.createQuery(sql)
+        .addParameter("id", id)
+        .executeAndFetchFirst(Client.class);
+        return client;
+      }
+    }
+    public static Client findByPhone(String phone_number){
+      try(Connection con = DB.sql2o.open()){
+        String sql = "SELECT * FROM clients WHERE phone_number=:phone_number";
+        Client client = con.createQuery(sql)
+        .addParameter("phone_number", phone_number)
+        .executeAndFetchFirst(Client.class);
+        return client;
       }
     }
 

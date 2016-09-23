@@ -36,5 +36,19 @@ public class ClientTest {
     testClient.save();
     assertEquals("5035550101", testClient.getPhoneNumber());
   }
+  @Test
+  public void find_returnsClientById_client2 (){
+    Client client1 = new Client("Jill", 1, "5035550101");
+    client1.save();
+    Client client2 = new Client("Amy", 2, "5035550102");
+    client2.save();
+    assertEquals(Client.find(client2.getId()), client2);
+  }
+  @Test
+  public void findByPhone_returnsClientByPhone_testClient (){
+    Client testClient = new Client("Jill", 1, "5035550101");
+    testClient.save();
+    assertEquals(Client.findByPhone("5035550101"), testClient);
+  }
 
 }
