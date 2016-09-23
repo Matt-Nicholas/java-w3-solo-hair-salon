@@ -4,19 +4,28 @@ import java.util.ArrayList;
 import org.sql2o.*;
 
 public class Stylist {
-  private String name;
   private int id;
+  private String name;
+  private int extention;
+  private String specialty;
 
-  public Stylist(String name) {
+  public Stylist(String name, int extention, String specialty) {
     this.name = name;
+    this.extention = extention;
+    this.specialty = specialty;
   }
-
+// Getters
+  public int getId(){
+    return id;
+  }
   public String getName(){
     return name;
   }
-
-  public int getId(){
-    return id;
+  public int getExtention(){
+    return extention;
+  }
+  public String getSpecialty(){
+    return specialty;
   }
 
   @Override
@@ -42,11 +51,30 @@ public class Stylist {
 
   public void save() {
     try(Connection con = DB.sql2o.open()) {
-      String sql = "INSERT INTO stylists (name) VALUES (:name)";
+      String sql = "INSERT INTO stylists (name, extention, specialty) VALUES (:name, :extention, :specialty)";
       this.id = (int) con.createQuery(sql, true)
         .addParameter("name", this.name)
+        .addParameter("extention", this.extention)
+        .addParameter("specialty", this.specialty)
         .executeUpdate()
         .getKey();
     }
+  }
+
+  public static List<Stylist> all(){
+    try(Connection con= DB.sql2o.open()){
+      String sql = "SELECT id, name, extention, specialty FROM stylists";
+      return con.createQuery(sql).executeAndFetch(Stylist.class);
+    }
+  }
+
+  public void updateExtention(int extention){
+    try(Connection con = DB.sql2o.open()) {
+      String sql = "UPDATE stylists SET extention = :extention WHERE id = :id";
+      con.createQuery(sql)
+        .addParameter("extention", extention)
+        .addParameter("id", id)
+        .executeUpdate();
+      }
   }
 }
