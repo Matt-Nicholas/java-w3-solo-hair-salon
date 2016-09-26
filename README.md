@@ -11,7 +11,7 @@ A salon webpage with interface for clients and employees
     -Connect to psql and run:
         # CREATE DATABASE hair_salon;
     -Now from the command line run:
-        $ psql hair_salon < hair_salon.sql
+        $ psql hair_salon < database.sql
 * compile and run App.class
 * click on the Admin link located in the footer for Administration options
 
