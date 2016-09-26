@@ -1,12 +1,42 @@
+html,
+body {
+   margin:0;
+   padding:0;
+   height:100%;
+}
+
 img{
-    width: 200px;
-    height: 200px;
+    width: 300px;
+    height: 300px;
+    border: 5px outset blue;
 }
 
 h1{
+    font-weight: lighter;
+    font-family: cursive;
+    color: skyblue;
     text-align: center;
 }
 
-h2{
+#footer {
+   position:absolute;
+   bottom:0;
+   width:100%;
+   height:60px;
+   background:#6cf;
+}
+
+#index-template{
     text-align: center;
+
+}
+
+#body {
+   padding:10px;
+   padding-bottom:60px;
+}
+
+#container {
+   min-height:100%;
+   position:relative;
 }

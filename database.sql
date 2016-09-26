@@ -124,9 +124,6 @@ ALTER TABLE ONLY stylists ALTER COLUMN id SET DEFAULT nextval('stylists_id_seq':
 --
 
 COPY clients (id, name, stylist_id, phone_number) FROM stdin;
-3	bill	2	12
-5	Client 1	2	12934801297834
-4	bill	2	56
 \.
 
 
@@ -134,7 +131,7 @@ COPY clients (id, name, stylist_id, phone_number) FROM stdin;
 -- Name: clients_id_seq; Type: SEQUENCE SET; Schema: public; Owner: alanamorosky
 --
 
-SELECT pg_catalog.setval('clients_id_seq', 5, true);
+SELECT pg_catalog.setval('clients_id_seq', 6, true);
 
 
 --
@@ -142,8 +139,10 @@ SELECT pg_catalog.setval('clients_id_seq', 5, true);
 --
 
 COPY stylists (id, name, specialty, extention, bio, image_src) FROM stdin;
-1	Hank	Propane	2	Sells propane and propane accessories	Hank.jpg
-2	Marge Simpson	Tall Hair	2	Tv actress	images/marge.gif
+4	Bill Dauterive	Military Cuts	1	Enjoys drinking beers in the alley with friends and crying him self to sleep.	bill.jpg
+5	Harley Quinn	Dye and makeup	2	High intelligence Exceptional agility and strength Immunity to most toxins Psychologist Skilled Gymnast, Exceptional hand to hand combatant	harley.jpg
+6	Marge Simpson	Perms	3	Marge is the matriarch of the Simpson family. 	marge.gif
+8	Mario	Moustaches	4	Spends his free time trying to rescue Princess Peach.	mario.jpg
 \.
 
 
@@ -151,7 +150,7 @@ COPY stylists (id, name, specialty, extention, bio, image_src) FROM stdin;
 -- Name: stylists_id_seq; Type: SEQUENCE SET; Schema: public; Owner: alanamorosky
 --
 
-SELECT pg_catalog.setval('stylists_id_seq', 2, true);
+SELECT pg_catalog.setval('stylists_id_seq', 8, true);
 
 
 --

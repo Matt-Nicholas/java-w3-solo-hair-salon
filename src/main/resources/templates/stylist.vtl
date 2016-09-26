@@ -13,17 +13,20 @@
         <input id="image_src" name="image_src" type="text" value="$stylist.getImage()" required>
         <button type="submit" class="btn btn-info">Update Stylist</button>
     </form>
+    <form action="/stylist/$stylist.getId()/delete" method="post">
+        <button type="submit" name="button" class="btn-danger">Remove Stylist</button>
+    </form>
     <br>
     <h4>Add client</h4>
     <form action="/stylist/$stylist.getId()/client/new" method="post">
         <br>
-        <label for="name">Name</label>
+        <label for="name">Name: </label>
         <input id="name" name="name" type="text">
         <br>
         <label for="stylist_id">Stylist id</label>
         <input id="stylist_id" name="stylist_id" type="text" value="$stylist.getId()">
         <br>
-        <label for="phone">Name</label>
+        <label for="phone">Phone# </label>
         <input id="phone" name="phone" type="text">
         <br>
         <button type="submit" class="btn btn-success">Add Client</button>
@@ -34,7 +37,6 @@
         <li>
             <h3><a href="/client/$client.getId()">$client.getName()</a></h3>
             <h5>$client.getPhoneNumber()</h5>
-            <button type="button" name="button"></button>
             <form action="/stylist/$stylist.getId()/client/$client.getId()/delete" method="post">
                 <button type="submit" class="btn btn-danger" id="delete-task">Delete Client</button>
             </form>

@@ -13,6 +13,7 @@ A salon webpage with interface for clients and employees
     -Now from the command line run:
         $ psql hair_salon < hair_salon.sql
 * compile and run App.class
+* click on the Admin link located in the footer for Administration options
 
 
 ### BDD
